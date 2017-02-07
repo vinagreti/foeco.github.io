@@ -15,12 +15,12 @@ md-icon[svgSrc] {
 }
 
 /* md-input */
-md-input{
+md-input-container{
     width: 100%;
 }
 
 .md-overlay-pane{
-  @media #{$mobile-screen} {
+  @media #{$small-mobile-screen} {
     width: 96%;
   }
 }
