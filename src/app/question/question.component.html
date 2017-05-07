@@ -1,0 +1,37 @@
+<div class="questions-wrapper">
+	<div class="row">
+		<div class="col-padding-2 col-phone-22 col-phone-offset-1 col-tablet-22 col-tablet-offset-1 col-desktop-20 col-desktop-offset-2 col-tv-18 col-tv-offset-3">
+			<h1>Perguntas e respostas</h1>
+			<small>Ajude outros em suas dúvidas. Ganhe pontos e faça história!</small>
+			<br><br>
+			<div class="question-wrapper" *ngFor="let question of questions">
+				<div class="row">
+					<div class="col-phone-2 vote-wrapper">
+						<button class="call-btn" md-icon-button color="primary" (click)="like(question)">
+						  <md-icon fontSet="fa" fontIcon="fa-caret-up"></md-icon>
+						</button>
+						<p>{{26}}</p>
+						<button class="call-btn" md-icon-button color="primary" (click)="like(question)">
+						  <md-icon fontSet="fa" fontIcon="fa-caret-down"></md-icon>
+						</button>
+					</div>
+
+
+					<div class="col-gutter-1 col-phone-18 click">
+						<h3>{{question.title}}</h3>
+						<small>{{question.text}}</small>
+						<button class="call-btn" md-icon-button color="primary" (click)="remove(question)">
+						  <md-icon fontSet="fa" fontIcon="fa-trash"></md-icon>
+						</button>
+					</div>
+
+
+					<a href="/image/?url={{question.url}}" target="_blank" class="col-gutter-1 col-phone-4">
+						<img *ngIf="question.media" [src]="question.media.url" src="/assets/img/cat-spin.gif">
+					</a>
+				</div>
+				<hr class="flower-hr">
+			</div>
+		</div>
+	</div>
+</div>

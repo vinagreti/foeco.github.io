@@ -1,4 +1,5 @@
 export class Profile{
+  startedApp: boolean;
   consume: number;
   kind : 'cosumer' | 'seller' | 'both' | 'public';
   production: number;
@@ -9,17 +10,16 @@ export class Profile{
   phone: string;
   site: string;
 
-  constructor(object: any){
-    if(typeof object == 'object'){
-      this.consume = object.consume || null;
-      this.kind = object.kind || null;
-      this.production = object.production || null;
-      this.cep = object.cep || null;
-      this.state = object.state || null;
-      this.city = object.city || null;
-      this.district = object.district || null;
-      this.phone = object.phone || null;
-      this.site = object.site || null;
-    }
+  constructor(object?: any){
+    this.startedApp =  object ? object.startedApp || false : false;
+    this.consume =  object ? object.consume : null;
+    this.kind =  object ? object.kind : null;
+    this.production =  object ? object.production : null;
+    this.cep =  object ? object.cep : null;
+    this.state =  object ? object.state : null;
+    this.city =  object ? object.city : null;
+    this.district =  object ? object.district : null;
+    this.phone =  object ? object.phone : null;
+    this.site =  object ? object.site : null;
   }
 }

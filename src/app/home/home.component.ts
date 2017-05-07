@@ -12,12 +12,12 @@ import { AuthService } from './../auth/shared/auth.service';
 export class HomeComponent implements OnInit {
 
 	user: any;
+	title: string = 'Feira Orgânica';
+	slogan: string = 'Talento, Alimento e Conhecimento';
 
 	constructor(
-		private authService: AuthService
+		public authService: AuthService
 	){}
-
-	title = 'Feira Orgâniva e Ecológica';
 
 	ngOnInit(){
 		this.authService.user.subscribe(user => this.user = user);

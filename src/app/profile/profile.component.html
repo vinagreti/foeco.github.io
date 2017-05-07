@@ -25,19 +25,29 @@
       <div class="address">
         <h2>Fala um poquinho de ti...</h2>
         <div>
-          <md-input placeholder="CEP" formControlName="cep" [(ngModel)]="profile.cep"></md-input>
+          <md-input-container>
+            <input mdInput placeholder="CEP" formControlName="cep" [(ngModel)]="profile.cep">
+          </md-input-container>
         </div>
         <div>
-          <md-input placeholder="Estado" formControlName="state" [(ngModel)]="profile.state"></md-input>
+          <md-input-container>
+            <input mdInput placeholder="Estado" formControlName="state" [(ngModel)]="profile.state">
+          </md-input-container>
         </div>
         <div>
-          <md-input placeholder="Cidade" formControlName="city" [(ngModel)]="profile.city"></md-input>
+          <md-input-container>
+            <input mdInput placeholder="Cidade" formControlName="city" [(ngModel)]="profile.city">
+          </md-input-container>
         </div>
         <div>
-          <md-input placeholder="Bairro" formControlName="district" [(ngModel)]="profile.district"></md-input>
+          <md-input-container>
+            <input mdInput placeholder="Bairro" formControlName="district" [(ngModel)]="profile.district">
+          </md-input-container>
         </div>
         <div>
-          <md-input placeholder="Telefone" formControlName="phone" [(ngModel)]="profile.phone"></md-input>
+          <md-input-container>
+            <input mdInput placeholder="Telefone" formControlName="phone" [(ngModel)]="profile.phone">
+          </md-input-container>
         </div>
       </div>
 
@@ -63,7 +73,9 @@
       <div class="manufacturers" *ngIf="profileForm.controls.kind.value == 'seller' || profileForm.controls.kind.value == 'both'">
         <h2>Aí sim hein? Produzindo orgânicos. Coisa linda!!! Explica isso direito...</h2>
         <div>
-          <md-input placeholder="Site" formControlName="site" [(ngModel)]="profile.site"></md-input>
+          <md-input-container>
+            <input mdInput placeholder="Site" formControlName="site" [(ngModel)]="profile.site">
+          </md-input-container>
         </div>
         <div>
           <h3>E quanto tu produz?</h3>

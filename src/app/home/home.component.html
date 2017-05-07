@@ -1,10 +1,25 @@
-<div id="home-wrapper">
-	<h1>{{title}}</h1>
-	<p>Go find you perfect accomodation!</p>
-	<button md-raised-button color="accent" type="button" [routerLink]="['/']">Home</button>
-	<button md-raised-button color="accent" type="button" [routerLink]="['/finder']">Busca</button>
-	<button md-raised-button color="accent" type="button" [routerLink]="['/articles']">Articles</button>
-	<button md-raised-button color="primary" type="button" *ngIf="!user" [routerLink]="['/auth']">Auth</button>
-	<button md-raised-button color="accent" type="button" *ngIf="user" [routerLink]="['/profile']">Profile</button>
-	<button md-raised-button color="warn" type="button" *ngIf="user" [routerLink]="['/auth/logout']">Logout</button>
+<div class="home-wrapper">
+	<div class="row">
+		<div class="col-phone-24 col-padding-1">
+			<h1>
+				{{title}}
+			</h1>
+			<h3>
+				{{slogan}}
+				<img class="h3-img" src="https://s3-sa-east-1.amazonaws.com/fodev-prod/img/global/logo_transparent.png">
+			</h3>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-phone-20 col-phone-offset-2 col-tablet-16 col-tablet-offset-4 col-laptop-12 col-laptop-offset-6 col-tv-6 col-tv-offset-9">
+			<button *ngIf="!user || !user.auth" md-raised-button color="accent" [routerLink]="['/auth']" type="button">
+			Entrar
+			<img class="btn-img" src="https://s3-sa-east-1.amazonaws.com/fodev-prod/img/global/logo_transparent.png">
+			</button>
+			<button md-raised-button color="primary" [routerLink]="['/about']" type="button">Saiba mais</button>
+			<button md-raised-button color="primary" [routerLink]="['/feed']" type="button">Espiar</button>
+		</div>
+	</div>
+
 </div>

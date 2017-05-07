@@ -1,3 +1,81 @@
-#home-wrapper{
-  padding: 10px;
+$img-rszr: "https://img.neopct.com/100x100/";
+$bg-url: "/assets/img/horta.jpg";
+$bg-url-gh: "https://vinagreti.github.io/foeco.github.io/assets/img/horta.jpg";
+
+
+
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower|Pacifico');
+
+.home-wrapper{
+	background-image: url($bg-url-gh);
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: table;
+    padding-top: 1vw;
+
+    filter: grayscale(30%);
+    -webkit-filter: grayscale(30%);
+    apple-filter: grayscale(30%);
+    khtml-filter: grayscale(30%);
+    ms-filter: grayscale(30%);
+
+    img.h3-img{
+        height: 40px;
+    }
+
+    img.btn-img{
+        height: 24px;
+        margin-bottom: 5px;
+    }
+
+    h1{
+    	color: #8e24aa;
+    	text-align: center;
+    	font-size: 70px;
+        background-color: rgba(white,0.3);
+        text-shadow: -4px 2px white;
+        font-family: 'Pacifico', cursive;
+        font-weight: bold;
+        line-height: 75px;
+    }
+
+    h3{
+        font-family: 'Pacifico', cursive;
+    	color: #8e24aa;
+    	text-align: center;
+    	font-size: 34px;
+    	background-color: rgba(white,0.60);
+        padding: 10px;
+    }
+
+    button{
+    	font-size: 24px;
+    	display: block;
+    	margin: 25px auto;
+    	width: 100%;
+        padding: 8px 0;
+        font-weight: bold;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    /* Small screen, non-retina */
+    h1{ font-size: 40px; }
+    h3{ font-size: 18px; }
+}
+@media only screen and (min-resolution: 2dppx) and (max-width: 320px) {
+    /* Small screen, retina */
+    h1{ font-size: 40px; }
+    h3{ font-size: 18px; }
+}
+@media only screen and (min-width: 321px) and (max-width: 538px) {
+    /* Medium screen, non-retina */
+}
+@media only screen and (min-resolution: 2dppx) and (min-width: 321px) and (max-width: 538px) {
+    /* Medium screen, retina */
+}
+@media only screen and (min-resolution: 2dppx) and (min-width: 539px) {
+    /* Large screen, retina */
 }

@@ -1,0 +1,48 @@
+<div class="alternatives-wrapper">
+	<div class="row">
+		<div class="col-padding-2 col-phone-22 col-phone-offset-1 col-tablet-22 col-tablet-offset-1 col-desktop-20 col-desktop-offset-2 col-tv-18 col-tv-offset-3">
+			<h1>Alternativas</h1>
+			<p>Conheça alternativas geniais para diversas situações.</p>
+
+			<div class="row">
+			<ng-container *ngFor="let alternative of alternatives">
+				<md-card class="col-gutter-1 col-phone-12 col-tablet-8 col-laptop-8 col-desktop-6 col-tv-4" *ngIf="alternative.title">
+				  <md-card-header class="primary-bg">
+				    <img md-card-avatar *ngIf="alternative.media" [src]="alternative.media.url" src="/assets/img/cat-spin.gif" [title]="alternative.text" />
+				    <md-card-title>Sitio da Amora</md-card-title>
+				    <md-card-subtitle>
+				    	<span class="click" title="Pessoas que gostaram">10 <md-icon color="primary" fontSet="fa" fontIcon="fa-heart"></md-icon></span>
+				    	<span class="click" title="Comentários">3 <md-icon color="primary" fontSet="fa" fontIcon="fa-comments-o"></md-icon></span>
+				    </md-card-subtitle>
+				  </md-card-header>
+				  
+				  <br>
+
+				  <img md-card-image *ngIf="alternative.media.url" [src]="alternative.media.url ? alternative.media.url : '/assets/img/cat-spin.gif'" [title]="alternative.text">
+				  
+				  <md-card-content>
+				  	<h5>{{alternative.title}}</h5>
+
+			  		Pagamento:
+			  		<md-icon color="primary" fontSet="fa" fontIcon="fa-handshake-o" title="Troca por outro produto ou alternativeo"></md-icon>
+			  		<md-icon color="primary" fontSet="fa" fontIcon="fa-clock-o" title="Troca por tempo"></md-icon>
+			  		<md-icon color="primary" fontSet="fa" fontIcon="fa-money" title="Troca por dinheiro"></md-icon>
+
+			  		<br>
+
+			  		Entrega:
+			  		<md-icon color="primary" fontSet="fa" fontIcon="fa-truck" title="Transportadora ou correios" class="invert-font"></md-icon>
+			  		<md-icon color="primary" fontSet="fa" fontIcon="fa-car" title="Delivery motorizado"></md-icon>
+			  		<md-icon color="primary" fontSet="fa" fontIcon="fa-bicycle" title="Delivery não motorizado"></md-icon>
+			  		<md-icon color="primary" fontSet="fa" fontIcon="fa-comment" title="A combinar"></md-icon>
+				  </md-card-content>
+
+				  <md-card-footer>
+					<button class="call-btn" md-raised-button color="accent">Eu quero!</button>
+				  </md-card-footer>
+				</md-card>
+			</ng-container>
+			</div>
+		</div>
+	</div>
+</div>

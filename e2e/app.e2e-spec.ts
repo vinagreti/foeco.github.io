@@ -1,10 +1,10 @@
-import { RoomexfinderPage } from './app.po';
+import { Foeco.Github.IoPage } from './app.po';
 
-describe('roomexfinder App', function() {
-  let page: RoomexfinderPage;
+describe('foeco.github.io App', () => {
+  let page: Foeco.Github.IoPage;
 
   beforeEach(() => {
-    page = new RoomexfinderPage();
+    page = new Foeco.Github.IoPage();
   });
 
   it('should display message saying app works', () => {

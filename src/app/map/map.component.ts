@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Http } from '@angular/http';
-import {SebmGoogleMap} from 'angular2-google-maps/core';
+import { Http, Response } from '@angular/http';
+import { SebmGoogleMap } from 'angular2-google-maps/core';
 
 @Component({
   selector: 'app-map',
@@ -21,7 +21,7 @@ export class MapComponent implements OnInit {
   constructor(private http: Http) { }
 
   ngOnInit() {
-    this.map.mapClick.subscribe(a => {
+    this.map.mapDbClick .subscribe(a => {
       this.lat = a.coords.lat;
       this.lng = a.coords.lng;
       this.getAddress(this.lat, this.lng);
@@ -29,10 +29,10 @@ export class MapComponent implements OnInit {
 
     this.map.zoomChange.subscribe(zoom => {
       this.zoom = zoom;
-      console.log(zoom);
+      console.log('zoom', zoom);
     });
 
-    this.getProdutores();
+    //this.getProdutores();
   }
 
   private getProdutores(){
@@ -42,13 +42,21 @@ export class MapComponent implements OnInit {
 
   private getAddress(lat, lng){
     let address = 'http://maps.google.com/maps/api/geocode/json?latlng='+lat+','+lng+'6&sensor=false'
-    this.http.get('address')
-    .subscribe(this.getBody);
+    this.http.get(address)
+    .subscribe(this.extractBody);
   }
 
-  private getBody = (res: any) => {
-    console.log(res.results);
-    return res.results;
+  private extractBody(response :Response){
+    let body;
+
+    // check if empty, before call json
+    if (response.text()) {
+        body = response.json().results || response.json();
+    }
+
+    console.log(body)
+
+    return body || {};
   }
 
 }

@@ -1,36 +1,52 @@
-<md-sidenav-layout fullscreen>
+<md-sidenav-container fullscreen>
+  <md-sidenav #start align="end">
+    <h2 align="center" class="decored-font">
+      <img class="btn-img" src="https://s3-sa-east-1.amazonaws.com/fodev-prod/img/global/logo_transparent.png">
+      {{title}}
+    </h2>
+    <div [ngSwitch]="isLogged()">
+      <div *ngSwitchCase="false">
+        <button md-raised-button color="accent" type="button" *ngIf="!isLogged()" [routerLink]="['/auth']" (click)="start.close()">Entrar</button>
+        <button md-raised-button color="primary" type="button" [routerLink]="['/']" (click)="start.close()">Home</button>
+        <button md-raised-button color="primary" type="button" [routerLink]="['/feed']" (click)="start.close()">Espiar</button>
+      </div>
+      <div *ngSwitchCase="true">
+        <button md-raised-button color="primary" type="button" [routerLink]="['/feed']" (click)="start.close()">Home</button>
+        <button md-raised-button color="primary" type="button" [routerLink]="['/blog']" (click)="start.close()">Blog</button>
+        <button md-raised-button color="primary" type="button" [routerLink]="['/post']" (click)="start.close()">Meus Posts</button>
+        <button md-raised-button color="primary" type="button" [routerLink]="['/profile']" (click)="start.close()">Meu Perfil</button>
+        <button md-raised-button color="primary" type="button" [routerLink]="['/question']" (click)="start.close()">Minhas Perguntas</button>
+        <button md-raised-button color="primary" type="button" [routerLink]="['/producer']" (click)="start.close()">Meus Talentos</button>
+        <button md-raised-button color="primary" type="button" [routerLink]="['/prodyct']" (click)="start.close()">Meus Produtos</button>
+        <button md-raised-button color="primary" type="button" [routerLink]="['/about']" (click)="start.close()">Sobre</button>
+        <button md-raised-button color="default" type="button" [routerLink]="['/auth/logout']" (click)="start.close()">Sair</button>
+      </div>
+    </div>
 
-  <md-sidenav #start (open)="closeStartButton.focus()">
-    <h2 align=center>Menu</h2>
-    <br><br>
-    <button md-button color="accent" type="button" [routerLink]="['/finder']" (click)="start.close()">Go Find</button>
-    <br><br>
-    <button md-button color="accent" type="button" [routerLink]="['/']" (click)="start.close()">Home</button>
-    <br><br>
-    <button md-button color="accent" type="button" *ngIf="user" [routerLink]="['/articles']" (click)="start.close()">Articles</button>
-    <br><br>
-    <button md-button color="accent" type="button" *ngIf="!user" [routerLink]="['/auth']" (click)="start.close()">Auth</button>
-    <br><br>
-    <button md-button color="accent" type="button" *ngIf="user" [routerLink]="['/profile']" (click)="start.close()">Profile</button>
-    <br><br>
-    <button md-button color="accent" type="button" *ngIf="user" [routerLink]="['/auth/logout']" (click)="start.close()">Logout</button>
-    <br><br>
-    <button md-button color="default" type="button" #closeStartButton (click)="start.close()">Close</button>
+    <div class="admin-menu" *ngIf="isLogged()">
+      <h2 align="center" class="decored-font">Admin</h2>
+      <button md-raised-button color="primary" type="button" [routerLink]="['/articles']" (click)="start.close()">Articles</button>
+    </div>
+
   </md-sidenav>
 
-  <md-toolbar color="primary">
-  	<span>
-  		<button md-icon-button (click)="start.toggle();">
-  			<md-icon fontSet="fa" fontIcon="fa-bars"></md-icon>
-  		</button>
-  		<span id="page-title">
-  			<a class="toolbar-brand" [routerLink]="['/']">{{title}}</a>
-  		</span>
+  <md-toolbar color="primary" *ngIf="!isInPath('/') || isLogged() || isInPath('/auth')">
+    <span id="page-title">
+      <a class="toolbar-brand decored-font" [routerLink]="['/']">{{brandName}}</a>
     </span>
+    <span class="example-spacer">
+      <md-icon class="center-icon click" fontSet="fa" fontIcon="fa-camera" (click)="postService.openEditDialog();"></md-icon>
+      <md-icon class="center-icon click" fontSet="fa" fontIcon="fa-university" [routerLink]="['/question']" title="Ajude outros em suas dúvidas."></md-icon>
+      <md-icon class="center-icon click" fontSet="fa" fontIcon="fa-handshake-o"[routerLink]="['/product']" title="Veja os produtos disponíveis."></md-icon>
+      <md-icon class="center-icon click" fontSet="fa" fontIcon="fa-leaf"[routerLink]="['/seed']" title="Veja as sementes disponíveis."></md-icon>
+      <md-icon class="center-icon click" fontSet="fa" fontIcon="fa-hand-stop-o"[routerLink]="['/talent']" title="Veja os talento disponíveis."></md-icon>
+      <md-icon class="center-icon click" fontSet="fa" fontIcon="fa-lightbulb-o"[routerLink]="['/alternative']" title="Conheça alternativas para diversas situações."></md-icon>
+    </span>
+    <md-icon class="click" fontSet="fa" fontIcon="fa-bars" (click)="start.toggle();"></md-icon>
   </md-toolbar>
 
   <div id="app-content-view">
     <router-outlet></router-outlet>
   </div>
 
-</md-sidenav-layout>
+</md-sidenav-container>

@@ -13,6 +13,7 @@ export class AuthLogoutComponent {
     public authService: AuthService,
     private router: Router
   ) {
+    console.log("constructor do logout")
     this.authService.logout();
     this.router.navigate(['/']);
   }

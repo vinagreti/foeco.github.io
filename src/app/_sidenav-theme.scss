@@ -1,15 +1,24 @@
-@import '~@angular/material/core/theming/theming';
+@import '~@angular/material/theming';
 
 @mixin sidenav-theme($theme) {
 
   $primary: map-get($theme, primary);
 
-  md-sidenav-layout{
+  .mat-sidenav-container{
+    /* Content */
     background-color: white;
+
+    /* Sidenav */
     md-sidenav{
-      background-color: #37AAD9;
-      color: white;
-      width: 300px;
+      background-color: white;
+      color: darken(mat-color($accent), 10%);
+      width: 240px;
+
+      button{
+      	width: 96%;
+      	padding: 3px;
+        margin: 2%;
+      }
     }
   }
 }

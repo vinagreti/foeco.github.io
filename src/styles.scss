@@ -1,0 +1,51 @@
+@import '~@neoprospecta/style-guide/sass/classes/grid';
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower|Pacifico');
+/* You can add global styles to this file, and also import other style files */
+html, body{
+  margin: 0;
+  padding: 0;
+}
+
+.click{
+	cursor: pointer;
+}
+
+.decored-font{
+	font-family: 'Pacifico', cursive;
+}
+
+hr {
+	border: none;
+	border-top: 1px dashed black;
+	text-align: center;
+}
+hr.flower-hr:after {
+	content: '\002740';
+	display: inline-block;
+	position: relative;
+	top: -12px;
+	background: white;
+	color: #8c8b8b;
+	font-size: 18px;
+}
+
+.text-center{
+	text-align: center;
+}
+
+.invert-font{
+	-moz-transform: scale(-1, 1);
+	-webkit-transform: scale(-1, 1);
+	-o-transform: scale(-1, 1);
+	-ms-transform: scale(-1, 1);
+	transform: scale(-1, 1);
+	margin-right: 8px;
+}
+
+md-input-container{
+	width: 100%;
+}
+
+.cdk-overlay-pane{
+	width: auto !important; //fix dialog position on mobile - should test in future material versions
+}

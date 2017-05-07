@@ -1,5 +1,6 @@
 import { AngularFire } from 'angularfire2';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { FirebaseObjectObservable } from 'angularfire2';
 import { BehaviorSubject } from 'rxjs';
 
@@ -15,9 +16,12 @@ export class ProfileService {
 	constructor(
 		private authService: AuthService,
 		private af: AngularFire,
+		private router: Router
 	){
-		this._profile = this.af.database.object('/profile/');
+		this._profile = new FirebaseObjectObservable<any>();
+
 		this.profile = new BehaviorSubject<Profile>(undefined);
+
 		this.authService.user.subscribe(user => {
 			if(user.auth && user.auth.uid){
 				this._profile = this.af.database.object('/profile/' + user.auth.uid);

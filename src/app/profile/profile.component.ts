@@ -33,7 +33,8 @@ export class ProfileComponent implements OnInit {
         this.loadingData = false;
         this.profile = profile;
       } else {
-        console.log('Sem profile setado. Cria profile.')
+        this.loadingData = false;
+        console.log('No profile. Create!')
       }
     });
   }

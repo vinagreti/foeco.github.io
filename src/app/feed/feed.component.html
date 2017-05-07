@@ -1,0 +1,94 @@
+<div class="feed">
+	<div class="row">
+		<div *ngFor="let item of feed; let item_index = index;" class="item col-phone-24 col-tablet-20 col-tablet-offset-2 col-laptop-18 col-laptop-offset-3 col-desktop-16 col-desktop-offset-4 col-tv-8 col-tv-offset-8">
+			<div class="head">
+				<div class="avatar">
+					<img *ngIf="item.author.picture" [src]="item.author.picture" src="/assets/img/cat-spin.gif" [title]="item.author.name" />
+				</div>
+				<div class="resume">
+					<div class="title">
+						{{item.author.name}}
+						<span class="badge" [ngStyle]="{'background-color': getPostKind(item.kind).categoryColor}" selected="true">{{getPostKind(item.kind).category_ptBr}}</span>
+						<span class="badge kind" [ngStyle]="{'border-color': getPostKind(item.kind).color, 'color': getPostKind(item.kind).color}" selected="true">{{getPostKind(item.kind).kind_ptBr}}</span>
+					</div>
+					<div class="interactions">
+						<span class="date">
+							{{item.date | date:'dd/MM/yyyy'}}
+						</span>
+						&nbsp; &nbsp;
+						<span *ngIf="item.comments" mdTooltip="Comentários">
+							<md-icon color="warn" fontSet="fa" fontIcon="fa-comments">{{item.comments.length}}</md-icon>
+						</span>
+						&nbsp;
+						<span *ngIf="item.likes" mdTooltip="Pessoas que gostaram">
+							<md-icon color="warn" fontSet="fa" fontIcon="fa-heart">{{item.likes.length}}</md-icon>
+						</span>
+						&nbsp;
+						<span *ngIf="item.dislikes" mdTooltip="Pessoas que não gostaram">
+							<md-icon color="warn" fontSet="fa" fontIcon="fa-thumbs-down">{{item.dislikes.length}}</md-icon>
+						</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="content">
+				<h3>{{item.title}}</h3>
+				<p>{{item.text}}</p>
+			</div>
+
+			<div *ngIf="item.media" class="carrousel">
+				<div [ngSwitch]="item.media.length > 1 ? true : false">
+					<div *ngSwitchCase="false">
+						<img class="single-img" [src]="item.media[0].url" src="/assets/img/cat-spin.gif" [title]="item.media[0].filename" />
+					</div>
+					<div *ngSwitchCase="true">
+						<div class="row">
+							<div class="visible-img">
+								<img [src]="item.media[getCarrouselConfig(item_index).img_index].url" src="/assets/img/cat-spin.gif" [title]="item.media[mediaToShow ? mediaToShow : 0].filename" />
+							</div>
+						</div>
+						<div class="row">
+							<div *ngFor="let img of item.media; let image_index = index;" class="col-phone-8 col-tablet-6 col-laptop-4 col-tv-4 col-gutter-2" (click)="setCarrouselConfig(item_index, image_index)">
+								<img class="click" [src]="img.url" src="/assets/img/cat-spin.gif" [title]="item.text" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="action-buttons">
+				<button class="call-btn" md-icon-button [color]="!item.likes ? 'default' : item.likes[user.auth.uid] ? 'primary' : 'warn'" (click)="like(item)">
+						<md-icon fontSet="fa" fontIcon="fa-heart"></md-icon>
+				</button>
+				<button class="call-btn" md-icon-button color="primary" [color]="!item.dislikes ? 'default' : item.dislikes[user.auth.uid] ? 'primary' : 'warn'" (click)="dislike(item)">
+						<md-icon fontSet="fa" fontIcon="fa-thumbs-down"></md-icon>
+				</button>
+			</div>
+
+			<div class="comments" *ngIf="item.comments">
+				<h3>Comentários</h3>
+				<div class="comment" *ngFor="let comment of item.comments" >
+					<span class="remove click" title="Remover este comentário" (click)="deleteComment(comment, item)">x</span>
+					<div class="avatar">
+						<img *ngIf="comment.author.picture" [src]="comment.author.picture" src="/assets/img/cat-spin.gif" [title]="comment.author.name" />
+					</div>
+					<div class="resume">
+						<span class="title">
+							{{comment.author.name}} - <span class="date">{{comment.author.date | date:'dd/MM/yyyy'}}</span>
+						</span>
+						<div class="text">
+							{{comment.text}}
+						</div>
+					</div>
+					<hr>
+				</div>
+			</div>
+			<form role="form" class="comment-form">
+				<md-input-container>
+					<textarea mdInput textarea-resize formControlName="text" name="text" rows="1" placeholder="Escreva um comentário" #textarea></textarea>
+				</md-input-container>
+				<button *ngIf="textarea.value" md-raised-button type="button" (click)="comment(textarea.value, item)">Enviar</button>
+			</form>
+		</div>
+	</div>
+</div>

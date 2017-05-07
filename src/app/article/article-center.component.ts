@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   template:  `
-    <router-outlet></router-outlet>
+    <div class="component-wrapper"><router-outlet></router-outlet></div>
   `
 })
 export class ArticleCenterComponent {}

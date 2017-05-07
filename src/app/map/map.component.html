@@ -1,7 +1,19 @@
-<p>Lat: {{lat}}</p>
-<p>Lng: {{lng}}</p>
-<p>Zoom: {{zoom}}</p>
-<p>Address: {{address}}</p>
+<div>
+	<input type="text" name="lat" [(ngModel)]="lat" placeholder="lat">
+	Lat: {{lat}}
+</div>
+<div>
+	<input type="text" name="lng" [(ngModel)]="lng" placeholder="lng">
+	Lng: {{lng}}
+</div>
+<div>
+	<input type="text" name="zoom" [(ngModel)]="zoom" placeholder="zoom">
+	Zoom: {{zoom}}
+</div>
+<div>
+	<input type="text" name="address" [(ngModel)]="address" placeholder="address">
+	Address: {{address}}
+</div>
 <sebm-google-map #map [latitude]="lat" [longitude]="lng">
   <sebm-google-map-marker [latitude]="lat" [longitude]="lng"></sebm-google-map-marker>
 </sebm-google-map>

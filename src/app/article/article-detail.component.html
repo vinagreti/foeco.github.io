@@ -1,3 +1,34 @@
-<p>
-  article-detail works!
-</p>
+<h1>Artigo</h1>
+
+<form role="form" name="articleForm" [formGroup]="articleForm" (submit)="save(articleForm.value)">
+	<md-input-container>
+		<input mdInput formControlName="name" name="name" type="text" placeholder="Nome do artigo" (keydown)="detectShortcut($event)">
+		<md-hint align="end" *ngIf="false">
+			Nome inválido
+		</md-hint>
+	</md-input-container>
+	<md-input-container>
+		<textarea mdInput textarea-resize formControlName="firstParagraph" name="firstParagraph" rows="1" placeholder="Primeiro parágrafo do artigo (apresentação)" (keydown)="detectShortcut($event)"></textarea>
+		<md-hint align="end" *ngIf="false">
+			Primeiro parágrafo inválido
+		</md-hint>
+	</md-input-container>
+	<md-input-container>
+		<textarea mdInput textarea-resize formControlName="content" name="content" rows="1" placeholder="Conteúdo do artigo (apresentação)" (keydown)="detectShortcut($event)"></textarea>
+		<md-hint align="end" *ngIf="false">
+			Conteúdo inválido
+		</md-hint>
+	</md-input-container>
+	<button md-raised-button type="button" (click)="goBack()">
+		<md-icon fontSet="fa" fontIcon="fa-arrow-left"></md-icon>
+		Fechar
+	</button>
+	<button md-raised-button color="primary" type="submit">
+		<md-icon fontSet="fa" fontIcon="fa-check"></md-icon>
+		Salvar
+	</button>
+	<button *ngIf="article | async" md-raised-button color="warn" type="button" (click)="removeArtcle()">
+		<md-icon fontSet="fa" fontIcon="fa-trash"></md-icon>
+		Remover
+	</button>
+</form>

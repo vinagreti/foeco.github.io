@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor';
 
-export class RoomexfinderPage {
+export class Foeco.Github.IoPage {
   navigateTo() {
     return browser.get('/');
   }

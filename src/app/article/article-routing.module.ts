@@ -9,6 +9,7 @@ const _articleRoutes: Routes = [
 
   { path: '', component: ArticleCenterComponent,
     children: [
+      { path: 'add',  component: ArticleDetailComponent },
       { path: ':id',  component: ArticleDetailComponent },
       { path: '',     component: ArticleListComponent }
     ]

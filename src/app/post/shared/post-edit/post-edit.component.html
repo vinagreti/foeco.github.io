@@ -1,0 +1,67 @@
+<h1 md-dialog-title>Novo post</h1>
+<p>
+	<small>Cadastre as atividades em que você manda bem e os produtos ecológicos e artesanais que você ou seu grupo produz.</small>
+</p>
+
+<form role="form" name="postForm" [formGroup]="postForm">
+	<md-select formControlName="kind" placeholder="Tipo de postagem">
+		<md-option value="product">
+			Sou produtor de...
+		</md-option>
+		<md-option value="talent">
+			Mando bem em...
+		</md-option>
+		<md-option value="seed">
+			Tenho sementes de...
+		</md-option>
+		<md-option value="knowledge">
+			Possuo conhecimento em...
+		</md-option>
+		<md-option value="alternative">
+			Sei de uma alternativa para...
+		</md-option>
+		<md-option value="ask_question">
+			Quero fazer uma pergunta sobre...
+		</md-option>
+		<md-option value="ask_knowledge">
+			Estou procurando o conhecimento...
+		</md-option>
+		<md-option value="ask_product">
+			Estou procurando o produto...
+		</md-option>
+		<md-option value="ask_seed">
+			Estou procurando a semente ou muda...
+		</md-option>
+		<md-option value="ask_talent">
+			Estou procurando o talento...
+		</md-option>
+		<md-option value="ask_alternative">
+			Estou procurando uma alternativa para...
+		</md-option>
+	</md-select>
+	<md-input-container>
+		<input mdInput formControlName="title" name="title" type="text" placeholder="Pergunta">
+	</md-input-container>
+
+	<md-input-container>
+		<textarea mdInput formControlName="text" name="text" rows="4" placeholder="Detalhes"></textarea>
+	</md-input-container>
+</form>
+
+<app-upload #postImages
+	database-path="post"
+	[data]="postForm.value"
+	[save]="save"
+></app-upload>
+
+<br><br>
+
+<button md-raised-button type="button" md-dialog-close>
+	<md-icon fontSet="fa" fontIcon="fa-arrow-left"></md-icon>
+	Fechar
+</button>
+
+<button md-raised-button color="primary" type="button" (click)="this.postForm.valid ? postImages.upload() : false;">
+	<md-icon fontSet="fa" fontIcon="fa-check"></md-icon>
+	Salvar
+</button>

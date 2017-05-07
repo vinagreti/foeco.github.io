@@ -1,0 +1,47 @@
+<div *ngIf="files">
+	<div [ngSwitch]="files.length > 1">
+		<div  *ngSwitchCase="false">
+			<div *ngFor="let img of files; let i = index;" class="file-wrapper">
+				<img [src]="file_srcs[i] ? file_srcs[i] : ''">
+			</div>
+		</div>
+
+		<div  *ngSwitchCase="true" class="row">
+			<div
+				class="file-wrapper col-phone-12 col-tablet-8 col-laptop-6 col-tv-4 col-gutter-2" 
+				*ngFor="let img of file_srcs">
+				<img [src]="img ? img : ''">
+			</div>
+		</div>
+	</div>
+	<p *ngIf="!totalUploaded">
+		Tamanho total {{getSizeInMb(getTotalFilesSize())|number:'1.1-2'}}MB
+	</p>
+</div>
+
+<form role="form" enctype="multipart/form-data">
+	<input id="files" name="files" type="file" multiple="true" accept="image/*" #fileUpload hidden="true" (change)="updateFilesToLoad()">
+</form>
+
+<small *ngIf="totalUploaded">
+	<br>
+	<md-progress-bar
+		class="example-margin"
+		[color]="'primary'"
+		[mode]="'determinate'"
+		[value]="getProgress()"
+		[bufferValue]="75">
+	</md-progress-bar>
+	Progresso: {{getProgress() | number:'1.1-2'}}% de {{getSizeInMb(getTotalFilesSize())|number:'1.1-2'}}MB
+</small>
+
+<br><br>
+
+<div *ngIf="!files" class="text-center click" (click)="fileUpload.click();">
+	<button type="button" md-mini-fab color="accent">
+		<md-icon fontSet="fa" fontIcon="fa-camera"></md-icon>
+	</button>
+	<p>Enviar imagem</p>
+</div>
+
+<br><br>
